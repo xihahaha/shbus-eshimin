@@ -36,7 +36,7 @@ def getBus(line_name):
         arrive_base = data2.read().decode('utf-8')
         arrivebase = json.loads(arrive_base)
         if arrivebase:
-            if arrivebase['cars'][0]['stopdis'] == '1':
+            if (arrivebase['cars'][0]['stopdis'] == '1') or (arrivebase['cars'][0]['stopdis'] == '0'):
                 result += arrivebase['cars'][0]['terminal'] + ' 距离 ' + busstop['lineResults0']['stops'][i]['zdmc'] + ' ' + arrivebase['cars'][0]['distance'] + ' 米 ' + arrivebase['cars'][0]['time'] + ' 秒 ' + '\n'
     if busstop['lineResults1']['stops']:
         l1 = len(busstop['lineResults1']['stops'])
@@ -52,12 +52,12 @@ def getBus(line_name):
             arrive_base1 = data3.read().decode('utf-8')
             arrivebase1 = json.loads(arrive_base1)
             if arrivebase1:
-                if arrivebase1['cars'][0]['stopdis'] == '1':
+                if (arrivebase1['cars'][0]['stopdis'] == '1') or (arrivebase1['cars'][0]['stopdis'] == '0'):
                     result += arrivebase1['cars'][0]['terminal'] + ' 距离 ' + busstop['lineResults1']['stops'][i]['zdmc'] + ' ' + arrivebase1['cars'][0]['distance'] + ' 米 ' + arrivebase1['cars'][0]['time'] + ' 秒 ' + '\n'
     return result
 
 
 if __name__ == '__main__':
-    line = '454路'
+    line = '01路'
     result = getBus(line)
     print(result)
